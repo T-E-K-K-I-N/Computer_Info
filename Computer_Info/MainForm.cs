@@ -381,5 +381,14 @@ namespace Computer_Info
 
         #endregion
 
+        private void Computer_Info_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Необходимо ли сохранить отчет о конфигурации ПК в Excel документ?", "Информация", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result is DialogResult.Yes)
+            {
+                SaveInFile();
+            }
+
+        }
     }
 }
