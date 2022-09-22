@@ -105,6 +105,17 @@ namespace Computer_Info
                                     item.SubItems.Add(resStr2);
 
                                     break;
+                                case "System.UInt32[]":
+
+                                    uint[] uintData = data.Value as uint[];
+                                    string resStr3 = string.Empty;
+                                    foreach (uint value in uintData)
+                                    {
+                                        resStr3 += $"{Convert.ToString(value)} ";
+                                    }
+                                    item.SubItems.Add(resStr3);
+
+                                    break;
 
                                 default:
 
@@ -160,6 +171,9 @@ namespace Computer_Info
                 case "Логические диски":
                     key = "Win32_LogicalDisk";
                     break;
+                case "Монитор":
+                    key = "Win32_DesktopMonitor";
+                    break;
                 case "Клавиатура":
                     key = "Win32_Keyboard";
                     break;
@@ -186,8 +200,19 @@ namespace Computer_Info
             toolStripComboBox1.SelectedIndex = 0;
         }
 
+        #region Сохранение файла
+
+        private void сохранитьToolStripButton_Click(object sender, EventArgs e)
+        {
+            SaveInFile();
+        }
 
         private void сохранитьВExcelФайлToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveInFile();
+        }
+
+        private void SaveInFile()
         {
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
@@ -201,6 +226,7 @@ namespace Computer_Info
             dictionary.Add("USB", "Win32_USBController");
             dictionary.Add("Диск", "Win32_DiskDrive");
             dictionary.Add("Логические диски", "Win32_LogicalDisk");
+            dictionary.Add("Монитор", "Win32_DesktopMonitor");
             dictionary.Add("Клавиатура", "Win32_Keyboard");
             dictionary.Add("Мышь", "Win32_PointingDevice");
             dictionary.Add("Сеть", "Win32_NetworkAdapter");
@@ -219,7 +245,8 @@ namespace Computer_Info
             {
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
+            MessageBox.Show("Отчет был успешно сохранен", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
@@ -252,12 +279,10 @@ namespace Computer_Info
 
                         foreach (PropertyData data in obj.Properties)
                         {
-                            if (data.Value != null && !string.IsNullOrEmpty(data.Value.ToString()))
-                            {
-                                sheet.Cells[row, 1].Value = data.Name;
-                                sheet.Cells[row, 2].Value = data.Value;
-                                row++;
-                            }
+
+                            sheet.Cells[row, 1].Value = data.Name;
+                            sheet.Cells[row, 2].Value = data.Value;
+                            row++;
 
                         }
                     }
@@ -313,11 +338,25 @@ namespace Computer_Info
             }
         }
 
+        #endregion
+
+        #region Открытие файла
+
         private void открытьПоследнийОтчетToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void открытьToolStripButton_Click(object sender, EventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void OpenFile ()
         {
             try
             {
-                if(!File.Exists(_path))
+                if (!File.Exists(_path))
                 {
                     ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
@@ -325,7 +364,7 @@ namespace Computer_Info
                     {
                         var sheet = package.Workbook.Worksheets.Add("List 1");
                         File.WriteAllBytes(_path, package.GetAsByteArray());
-                        MessageBox.Show("Программа не нашла нужный файл и создала новый.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Программа не нашла нужный файл и создала новый пустой документ.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
 
                 }
@@ -339,5 +378,8 @@ namespace Computer_Info
                 MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        #endregion
+
     }
 }
