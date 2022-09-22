@@ -31,11 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Computer_Info));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сохранитьВExcelФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripComboBox1 = new System.Windows.Forms.ToolStripComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.открытьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.открытьПоследнийОтчетToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -46,15 +49,25 @@
             this.файлToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(933, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(604, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // файлToolStripMenuItem
             // 
+            this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.открытьToolStripMenuItem,
+            this.сохранитьВExcelФайлToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
-            this.файлToolStripMenuItem.Text = "Файл";
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
+            this.файлToolStripMenuItem.Text = "Отчет";
+            // 
+            // сохранитьВExcelФайлToolStripMenuItem
+            // 
+            this.сохранитьВExcelФайлToolStripMenuItem.Name = "сохранитьВExcelФайлToolStripMenuItem";
+            this.сохранитьВExcelФайлToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.сохранитьВExcelФайлToolStripMenuItem.Text = "Сохранить";
+            this.сохранитьВExcelФайлToolStripMenuItem.Click += new System.EventHandler(this.сохранитьВExcelФайлToolStripMenuItem_Click);
             // 
             // toolStrip1
             // 
@@ -62,7 +75,7 @@
             this.toolStripComboBox1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(933, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(604, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -80,6 +93,7 @@
             "Диск",
             "Логические диски",
             "Клавиатура",
+            "Мышь",
             "Сеть",
             "Пользователи"});
             this.toolStripComboBox1.Name = "toolStripComboBox1";
@@ -97,7 +111,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(0, 49);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(933, 539);
+            this.listView1.Size = new System.Drawing.Size(604, 539);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -110,13 +124,28 @@
             // columnHeader2
             // 
             this.columnHeader2.Text = "Значение";
-            this.columnHeader2.Width = 200;
+            this.columnHeader2.Width = 400;
+            // 
+            // открытьToolStripMenuItem
+            // 
+            this.открытьToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.открытьПоследнийОтчетToolStripMenuItem});
+            this.открытьToolStripMenuItem.Name = "открытьToolStripMenuItem";
+            this.открытьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.открытьToolStripMenuItem.Text = "Открыть";
+            // 
+            // открытьПоследнийОтчетToolStripMenuItem
+            // 
+            this.открытьПоследнийОтчетToolStripMenuItem.Name = "открытьПоследнийОтчетToolStripMenuItem";
+            this.открытьПоследнийОтчетToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.открытьПоследнийОтчетToolStripMenuItem.Text = "Открыть последний отчет";
+            this.открытьПоследнийОтчетToolStripMenuItem.Click += new System.EventHandler(this.открытьПоследнийОтчетToolStripMenuItem_Click);
             // 
             // Computer_Info
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 588);
+            this.ClientSize = new System.Drawing.Size(604, 588);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -145,6 +174,9 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ToolStripMenuItem сохранитьВExcelФайлToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem открытьПоследнийОтчетToolStripMenuItem;
     }
 }
 
